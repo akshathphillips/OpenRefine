@@ -15,5 +15,7 @@ jobs:
           distribution: 'temurin'
       - name: Build with Maven
         run: mvn clean install -DskipTests -pl main -am
-      - name: Run tests without NonDex tool
+      - name: Run tests WITHOUT NonDex tool
         run: mvn -pl main test -Dtest=com.google.refine.browsing.facets.ListFacetTests#serializeListFacet
+      - name: Run tests WITH NonDex tool
+        run: mvn -pl main test edu.illinois:nondex-maven-plugin:2.1.1:nondex -Dtest=com.google.refine.browsing.facets.ListFacetTests#serializeListFacet -DnondexRuns=100
